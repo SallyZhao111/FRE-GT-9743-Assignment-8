@@ -3,7 +3,7 @@ import numpy as np
 from typing import Optional, List
 
 from sklearn.semi_supervised import SelfTrainingClassifier
-from fixedincomelib.analytics.bond_utilities import BondUtils
+# from fixedincomelib.analytics.bond_utilities import BondUtils
 from fixedincomelib.date import Date, Period, TermOrTerminationDate
 from fixedincomelib.date.utilities import accrued
 from fixedincomelib.market.basics import AccrualBasis

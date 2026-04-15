@@ -20,7 +20,7 @@ from fixedincomelib.yield_curve.build_method import (
     YieldCurveFundingBuildMethod,
 )
 from fixedincomelib.yield_curve.yield_curve_model import YieldCurve, YieldCurveModelComponent
-from fixedincomelib.analytics.bond_utilities import BondUtils
+# from fixedincomelib.analytics.bond_utilities import BondUtils
 
 
 class YieldCurveBuilder:

@@ -23,7 +23,7 @@ from fixedincomelib.product.linear_products import (
     ProductZeroSpread,
 )
 from fixedincomelib.product.utilities import LongOrShort, PayOrReceive
-from fixedincomelib.analytics import BondUtils
+# from fixedincomelib.analytics import BondUtils
 
 class ProductFactory:
 
