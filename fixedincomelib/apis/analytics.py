@@ -322,13 +322,57 @@ def qfEuropeanOptionSABRPdfAndCdf(
             )[SabrMetrics.ALPHA]
 
     ### sample pdf/cdf and pack up
-    xs, xs_shifted, cdf, pdf = SABRAnalytics.pdf_and_cdf(
-        forward, time_to_expiry, alpha, beta, rho, nu, xs, shift
-    )
+    dist = SABRAnalytics.pdf_and_cdf(forward, time_to_expiry, alpha, beta, rho, nu, xs, shift)
     df = pd.DataFrame(columns=["Forward", "ShiftedForward", "Cdf", "Pdf"])
-    df.Forward = xs
-    df.ShiftedForward = xs_shifted
-    df.Cdf = cdf
-    df.Pdf = pdf
+    df.Forward = dist["grids"]
+    df.ShiftedForward = dist["grids"] + shift
+    df.Cdf = dist["cdf"]
+    df.Pdf = dist["pdf"]
 
     return df
+
+
+def qfSABRQuantileMapSpreadOptionFromNormalATM(
+    forward_1: float,
+    sigma_atm_normal_1: float,
+    beta_1: float,
+    rho_1: float,
+    nu_1: float,
+    forward_2: float,
+    sigma_atm_normal_2: float,
+    beta_2: float,
+    rho_2: float,
+    nu_2: float,
+    corr_12: float,
+    strike: float,
+    time_to_expiry: float,
+    num_paths: int,
+    shift_1: Optional[float] = 0.0,
+    shift_2: Optional[float] = 0.0,
+    num_grid: Optional[int] = 801,
+    seed: Optional[int] = 42,
+    use_sobol: Optional[bool] = True,
+    return_paths: Optional[bool] = False,
+):
+    return SABRAnalytics.quantile_map_spread_option_price_from_normal_atm(
+        forward_1=forward_1,
+        sigma_atm_normal_1=sigma_atm_normal_1,
+        beta_1=beta_1,
+        rho_1=rho_1,
+        nu_1=nu_1,
+        forward_2=forward_2,
+        sigma_atm_normal_2=sigma_atm_normal_2,
+        beta_2=beta_2,
+        rho_2=rho_2,
+        nu_2=nu_2,
+        corr_12=corr_12,
+        strike=strike,
+        time_to_expiry=time_to_expiry,
+        num_paths=num_paths,
+        shift_1=shift_1,
+        shift_2=shift_2,
+        num_grid=num_grid,
+        seed=seed,
+        use_sobol=use_sobol,
+        return_paths=return_paths,
+    )

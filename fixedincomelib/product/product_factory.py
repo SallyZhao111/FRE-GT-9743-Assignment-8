@@ -25,7 +25,6 @@ from fixedincomelib.product.linear_products import (
 from fixedincomelib.product.utilities import LongOrShort, PayOrReceive
 from fixedincomelib.analytics import BondUtils
 
-
 class ProductFactory:
 
     @classmethod
